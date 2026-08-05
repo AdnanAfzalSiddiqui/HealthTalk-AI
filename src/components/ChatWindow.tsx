@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-
-type Message = {
-  sender: "user" | "assistant";
-  text: string;
-};
+import MessageBubble from "./MessageBubble";
+import type { ChatMessage } from "@/utils/types";
 
 export default function ChatWindow() {
-  const [messages] = useState<Message[]>([
+  const [messages] = useState<ChatMessage[]>([
     {
+      id: 1,
       sender: "assistant",
-      text: "Hello! I am HealthTalk AI. How can I help you today?",
+      message:
+        "Hello! I am HealthTalk AI. Please describe your symptoms or healthcare question.",
+      timestamp: new Date().toLocaleString(),
     },
   ]);
 
@@ -22,32 +22,19 @@ export default function ChatWindow() {
         borderRadius: "12px",
         padding: "24px",
         boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-        marginTop: "20px",
+        marginTop: "24px",
       }}
     >
-      <h2 style={{ marginBottom: "20px" }}>Consultation Chat</h2>
+      <h2 style={{ marginBottom: "20px" }}>
+        Consultation Chat
+      </h2>
 
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          style={{
-            marginBottom: "15px",
-            padding: "12px",
-            borderRadius: "10px",
-            backgroundColor:
-              message.sender === "assistant"
-                ? "#e0f2fe"
-                : "#dcfce7",
-          }}
-        >
-          <strong>
-            {message.sender === "assistant"
-              ? "HealthTalk AI"
-              : "You"}
-          </strong>
-
-          <p style={{ marginTop: "6px" }}>{message.text}</p>
-        </div>
+      {messages.map((msg) => (
+        <MessageBubble
+          key={msg.id}
+          sender={msg.sender}
+          message={msg.message}
+        />
       ))}
     </div>
   );
