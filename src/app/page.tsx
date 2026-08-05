@@ -1,41 +1,81 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeatureCard from "@/components/FeatureCard";
+import VoiceRecorder from "@/components/VoiceRecorder";
+import ChatWindow from "@/components/ChatWindow";
+import AudioPlayer from "@/components/AudioPlayer";
 
 export default function Home() {
   return (
     <>
       <Header />
 
-      <main className="container">
-        <section className="hero">
-          <h1>HealthTalk AI</h1>
+      <main
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 20px",
+        }}
+      >
+        <section
+          style={{
+            textAlign: "center",
+            marginBottom: "50px",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "42px",
+              marginBottom: "20px",
+            }}
+          >
+            HealthTalk AI
+          </h1>
 
-          <p>
+          <p
+            style={{
+              maxWidth: "800px",
+              margin: "0 auto",
+              fontSize: "18px",
+              lineHeight: "1.7",
+            }}
+          >
             An AI-powered healthcare consultation platform that enables users
-            to communicate using voice, receive medical information, and hear
-            responses through speech synthesis.
+            to communicate through voice. The application converts speech into
+            text, retrieves relevant medical information, and generates voice
+            responses using cloud-based AI services.
           </p>
-
-          <button>Start Consultation</button>
         </section>
 
-        <section className="features">
+        <section
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginBottom: "50px",
+          }}
+        >
           <FeatureCard
             title="Speech-to-Text"
-            description="Convert voice into text using AssemblyAI."
+            description="Convert spoken language into text using AssemblyAI."
           />
 
           <FeatureCard
             title="Medical Information"
-            description="Retrieve healthcare information using API Ninjas."
+            description="Retrieve healthcare information through API Ninjas."
           />
 
           <FeatureCard
             title="Text-to-Speech"
-            description="Listen to AI-generated healthcare responses."
+            description="Generate voice responses using Google Text-to-Speech."
           />
         </section>
+
+        <VoiceRecorder />
+
+        <ChatWindow />
+
+        <AudioPlayer />
       </main>
 
       <Footer />
