@@ -8,9 +8,17 @@ export default function Header() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
       }}
     >
-      <h2>HealthTalk AI</h2>
+      <div>
+        <h2 style={{ margin: 0 }}>HealthTalk AI</h2>
+        <small style={{ color: "#cbd5e1" }}>
+          AI-Powered Healthcare Consultation
+        </small>
+      </div>
 
       <nav>
         <ul
@@ -20,12 +28,13 @@ export default function Header() {
             gap: "24px",
             margin: 0,
             padding: 0,
+            fontWeight: 500,
           }}
         >
           <li>Home</li>
           <li>Features</li>
+          <li>Documentation</li>
           <li>About</li>
-          <li>Contact</li>
         </ul>
       </nav>
     </header>
