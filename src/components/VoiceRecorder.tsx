@@ -1,19 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import useRecorder from "@/hooks/useRecorder";
 
 export default function VoiceRecorder() {
-  const [isRecording, setIsRecording] = useState(false);
-
-  const startRecording = () => {
-    setIsRecording(true);
-    console.log("Recording started...");
-  };
-
-  const stopRecording = () => {
-    setIsRecording(false);
-    console.log("Recording stopped.");
-  };
+  const {
+    isRecording,
+    startRecording,
+    stopRecording,
+    resetRecording,
+    audioUrl,
+  } = useRecorder();
 
   return (
     <div
@@ -22,37 +18,22 @@ export default function VoiceRecorder() {
         padding: "24px",
         borderRadius: "12px",
         boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-        textAlign: "center",
-        margin: "20px 0",
+        marginTop: "30px",
       }}
     >
       <h2>Voice Consultation</h2>
 
-      <p>
+      <p style={{ margin: "15px 0" }}>
         {isRecording
-          ? "Listening to your voice..."
-          : "Click the button below to begin speaking."}
+          ? "Listening..."
+          : "Press Start Recording to begin your consultation."}
       </p>
 
-      {isRecording ? (
-        <button
-          onClick={stopRecording}
-          style={{
-            marginTop: "15px",
-            padding: "12px 24px",
-            backgroundColor: "#dc2626",
-            color: "#fff",
-            borderRadius: "8px",
-          }}
-        >
-          Stop Recording
-        </button>
-      ) : (
+      {!isRecording ? (
         <button
           onClick={startRecording}
           style={{
-            marginTop: "15px",
-            padding: "12px 24px",
+            padding: "10px 18px",
             backgroundColor: "#2563eb",
             color: "#fff",
             borderRadius: "8px",
@@ -60,6 +41,37 @@ export default function VoiceRecorder() {
         >
           Start Recording
         </button>
+      ) : (
+        <button
+          onClick={stopRecording}
+          style={{
+            padding: "10px 18px",
+            backgroundColor: "#dc2626",
+            color: "#fff",
+            borderRadius: "8px",
+          }}
+        >
+          Stop Recording
+        </button>
+      )}
+
+      {audioUrl && (
+        <div style={{ marginTop: "20px" }}>
+          <p>Recording completed successfully.</p>
+
+          <button
+            onClick={resetRecording}
+            style={{
+              marginTop: "10px",
+              padding: "8px 16px",
+              borderRadius: "8px",
+              backgroundColor: "#475569",
+              color: "#fff",
+            }}
+          >
+            Reset
+          </button>
+        </div>
       )}
     </div>
   );
